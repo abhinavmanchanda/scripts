@@ -17,6 +17,12 @@ if [ "$#" -ne 2 ]; then
  exit 1
 fi
 
+if [ ! -d "$1" ] || [ ! -d "$2" ]; then
+ echo "\033[0;31mError: Directory does not exist \033[0m"
+ usage
+ exit 1
+fi
+
 cd $1
 mkdir .$1
 git mv * .$1
