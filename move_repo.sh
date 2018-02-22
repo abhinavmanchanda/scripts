@@ -32,8 +32,10 @@ git commit -a -m "Preparing $1 for move"
 cd ../$2
 git remote add temp ../$1
 git fetch temp
-git merge temp/master
+git merge --allow-unrelated-histories --no-edit temp/master
 git checkout --ours .
 git add .
 git commit
 git remote rm temp
+cd ../$1
+git revert --no-edit HEAD
